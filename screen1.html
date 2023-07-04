@@ -291,6 +291,51 @@
 <div id="text-1" class="text-1" onclick="goTo('./Screen1.html')";>[ Text ]sda <h1>hi</h1></div>
 <div id="layer-2" class="layer-2" ></div>
     </div>
+
+        <h1>HOS</h1>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+        import { getDatabase, ref, set, get, push, remove } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_u2xZk5efn-rl7BAX67U1lIpSQigIwX0",
+            authDomain: "acqua-cb27b.firebaseapp.com",
+            databaseURL: "https://acqua-cb27b-default-rtdb.firebaseio.com",
+            projectId: "acqua-cb27b",
+            storageBucket: "acqua-cb27b.appspot.com",
+            messagingSenderId: "633435186488",
+            appId: "1:633435186488:web:1673294a500f0386220dcd",
+            measurementId: "G-R5WLC0NS8Q"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase();
+
+        // Obtener todas las referencias de la base de datos
+        const databaseRef = ref(database);
+        console.log("hi")
+        // Obtener los datos de la base de datos
+        get(databaseRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                const data = snapshot.val();
+                console.log(data); // Aquí se mostrarán todos los datos de la base de datos
+            } else {
+                console.log("No se encontraron datos");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+
+
+        const mProjectsRef = ref(database, 'userProjects/');
+        get(mProjectsRef).then((snapshot) => {
+        console.log(snapshot)
+        }).catch((error) => {
+          console.error(error);
+        });
+
+    </script>
 </body>
 
 </html>
